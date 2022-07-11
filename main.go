@@ -10,8 +10,6 @@ import (
 	"net"
 	"net/http"
 	"time"
-
-	"github.com/codeready-toolchain/devcluster/pkg/rest"
 )
 
 const namespace = "rajivtest"
@@ -46,7 +44,7 @@ func doRequest(httpClient *http.Client) string {
 		return err.Error()
 	}
 
-	defer rest.CloseResponse(res)
+	defer closeResponse(res)
 	resBody, readError := readBody(res.Body)
 	if readError != nil {
 		fmt.Println("error while reading body of the response")
